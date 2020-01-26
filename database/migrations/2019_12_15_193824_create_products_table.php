@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('wholesale_min_count');
             $table->integer('discount');
             $table->float('price');
-            $table->json('proprieties');
+            $table->json('properties');
             $table->timestamps();
         });
     }

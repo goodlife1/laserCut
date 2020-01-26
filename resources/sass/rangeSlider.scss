@@ -1,0 +1,51 @@
+@import "variables";
+.range-slider {
+    display: inline-block;
+    padding: 0 ($knob-size / 2);
+    height: $slider-height;
+    width: $slider-width;
+}
+.range-slider.disabled {
+    opacity: 0.5;
+}
+.range-slider-inner {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+.range-slider-rail,
+.range-slider-fill {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: $rail-height;
+    border-radius: $rail-height / 2;
+    transform: translateY(-50%);
+}
+.range-slider-rail {
+    width: 100%;
+    background-color: $rail-color;
+}
+.range-slider-fill {
+    background-color: $rail-fill-color;
+}
+.range-slider-knob {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    box-sizing: border-box;
+    height: $knob-size;
+    width: $knob-size;
+    border: $knob-border;
+    border-radius: 50%;
+    background-color: $knob-color;
+    box-shadow: $knob-shadow;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+.range-slider-hidden {
+    display: none;
+}

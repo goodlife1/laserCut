@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
 
 //        factory(App\Product::class, 50)->create();
         factory(App\Category::class, 6)->create();
-        factory(App\Product::class, 50)->create([])->each(function ($user) {
+        factory(App\Product::class, 500)->create([])->each(function ($user) {
         for($i=0;$i<4;$i++){
            factory(App\Image::class)->create([
                'product_id'=>$user->id

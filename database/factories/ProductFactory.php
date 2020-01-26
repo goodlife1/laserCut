@@ -13,7 +13,7 @@ $factory->define(Product::class, function (Faker $faker) {
         'wholesale_min_count'=>50,
         'discount'=>$faker->numberBetween(0,16),
         'price'=>$faker->numberBetween(20,250),
-        'proprieties'=> json_encode([
+        'properties'=> json_encode([
             'main'=>'main'
         ])
 

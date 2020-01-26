@@ -23,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \App::setLocale('ua');
+//        dd(\Request::server('HTTP_ACCEPT_LANGUAGE'));
     }
 }

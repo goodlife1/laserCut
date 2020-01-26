@@ -165,7 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        MartinLindhe\VueInternationalizationGenerator\GeneratorProvider::class,
         /*
          * Application Service Providers...
          */
@@ -174,7 +174,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        App\Providers\CartServiceProvider::class,
+        App\Providers\NovaPoshtaProvider::class,
+        Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*
@@ -225,7 +227,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Cart' => App\Facades\CartService::class,
+        'NovaPoshta' => App\Facades\NovaPoshtaService::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

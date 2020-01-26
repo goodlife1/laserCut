@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.8.35 on 2019-12-16 05:54:27.
+ * Generated for Laravel 5.8.35 on 2020-01-25 10:49:21.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -14599,6 +14599,150 @@ namespace Illuminate\Support {
  
 }
 
+namespace App\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class CartService {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function get()
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->get();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function add($item, $count = 1)
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->add($item, $count);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function edit($id, $qty)
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->edit($id, $qty);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function delete($id)
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->delete($id);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function isEmpty()
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->isEmpty();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getProductIdAndCount()
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->getProductIdAndCount();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function save()
+        {
+                        /** @var \App\Services\Cart $instance */
+                        return $instance->save();
+        }
+         
+    }
+
+    /**
+     * 
+     *
+     */ 
+    class NovaPoshtaService {
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getCities()
+        {
+                        /** @var \App\Services\NovaPoshta $instance */
+                        return $instance->getCities();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getWareHouses()
+        {
+                        /** @var \App\Services\NovaPoshta $instance */
+                        return $instance->getWareHouses();
+        }
+         
+    }
+ 
+}
+
+namespace Ixudra\Curl\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Curl {
+        
+        /**
+         * 
+         *
+         * @param $url string   The URL to which the request is to be sent
+         * @return \Ixudra\Curl\Builder 
+         * @static 
+         */ 
+        public static function to($url)
+        {
+                        /** @var \Ixudra\Curl\CurlService $instance */
+                        return $instance->to($url);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -17392,6 +17536,12 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Cart extends \App\Facades\CartService {}
+
+    class NovaPoshta extends \App\Facades\NovaPoshtaService {}
+
+    class Curl extends \Ixudra\Curl\Facades\Curl {}
  
 }
 
