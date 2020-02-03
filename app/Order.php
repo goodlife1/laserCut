@@ -39,6 +39,6 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'costumer_full_name', 'costumer_phone_number', 'costumer_email', 'delivery_address'
+        'costumer_full_name', 'costumer_phone_number', 'costumer_email', 'delivery_address','amount'
     ];
 }

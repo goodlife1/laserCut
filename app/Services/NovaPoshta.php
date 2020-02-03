@@ -17,13 +17,13 @@ class NovaPoshta
     private $data = [];
 
 
-    private function setmodelName(string $model)
+    private function setModelName(string $model)
     {
         $this->data["modelName"] = $model;
         return $this;
     }
 
-    private function setcalledMethod(string $method)
+    private function setCalledMethod(string $method)
     {
         $this->data["calledMethod"] = $method;
         return $this;
@@ -41,22 +41,45 @@ class NovaPoshta
 
     }
 
-    private function sendRequest()
+    private function get()
     {
         $this->setApiKey();
         return Curl::to(self::NOVA_POSHTA_URI)->asJson(true)->withData([$this->data])->post();
     }
 
-    public function getCities($firstChar = '')
+    private function tryGetCities(string $name)
     {
-        return $this->setmodelName('Address')->setcalledMethod('getCities')->
-        setMethodProperties(['FindByString' => $firstChar])->sendRequest();
-
+        $response = $this->setModelName('Address')->setCalledMethod('getCities')->
+        setMethodProperties(['FindByString' => $name])->get();
+        return $this->verifyResponse(array_shift($response));
     }
 
-    public function getWareHouses()
+    private function tryGetWarehouses(string $cityRef)
     {
+        $response = $this->setModelName('Address')->setCalledMethod('getWarehouses')
+            ->setMethodProperties(['CityRef'=>$cityRef])->get();
 
+        return $this->verifyResponse(array_shift($response));
+    }
+
+    public function verifyResponse(array $response)
+    {
+        if (!$response['success']) {
+            throw new \Exception(implode($response['errors'], '<br>'));
+        }
+        return $response['data'];
+    }
+
+    public function getCities(string $name = '')
+    {
+        $response = $this->tryGetCities($name);
+        return $response;
+    }
+
+    public function getWareHouses(string $cityRef)
+    {
+        $response = $this->tryGetWarehouses($cityRef);
+        return $response;
     }
 
 }

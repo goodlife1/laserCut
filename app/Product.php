@@ -58,7 +58,7 @@ class Product extends Model
 
     public function category()
     {
-        return $this->belongsToMany('App\Product', 'product_category', 'product_id', 'category_id');
+        return $this->belongsToMany('App\Category', 'product_category','product_id', 'category_id');
     }
 
     public function getProductByCategory($id)
@@ -85,7 +85,7 @@ class Product extends Model
         return $query;
     }
 
-    public function scopegetMinAndMaxPrice(Builder $query)
+    public function scopeGetMinAndMaxPrice(Builder $query)
     {
         $query->select(\DB::raw("MIN(price) as minPrice, MAX(price) as maxPrice"));
 

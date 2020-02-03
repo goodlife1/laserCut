@@ -89,7 +89,7 @@ class Cart
         $this->get();
         $products = [];
         foreach ($this->items as $item) {
-            array_push($products, ['product_id' => $item['item']->id, 'qty' => $item['qty']]);
+            $products[] = ['product_id' => $item['item']->id, 'count' => $item['qty']];
         }
         return $products;
     }
@@ -98,5 +98,10 @@ class Cart
     {
         \Session::put('cart', $this);
         return $this;
+    }
+
+    public function clear()
+    {
+        \Session::forget('cart');
     }
 }

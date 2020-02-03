@@ -8,8 +8,16 @@ class DeliveryController extends Controller
 {
     public function getCities(Request $request)
     {
+        $cities = \NovaPoshta::getCities($request->string);
+
         return \Response::json([
-            'cities'=>\NovaPoshta::getCities($request->string)
+            'cities' => $cities
         ]);
+    }
+
+    public function getWarehouses(Request $request)
+    {
+        $warehouses = \NovaPoshta::getWareHouses($request->ref);
+        return $warehouses;
     }
 }

@@ -23,6 +23,8 @@ class IndexController extends Controller
         return view('shop.shop', ['products' => $products, 'categories' => $categories]);
     }
 
+
+
     public function getProducts(Request $request)
     {
         $sort = ['created_at', 'asc'];

@@ -25,6 +25,6 @@ use Illuminate\Database\Eloquent\Model;
 class OrderItems extends Model
 {
     protected $fillable = [
-        'order_id','product_id'
+        'order_id','product_id','count'
     ];
 }

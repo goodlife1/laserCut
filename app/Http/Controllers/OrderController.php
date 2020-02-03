@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NewOrderRequest;
 use App\Order;
 use App\OrderItems;
 use Illuminate\Http\Request;
@@ -17,27 +18,31 @@ class OrderController extends Controller
 
     public function index()
     {
-        return view('checkout.app');
+        $cities = \NovaPoshta::getCities();
+        $cities = array_column($cities, 'Ref', 'Description');
+        return view('checkout.app', [
+            'deliveryCities' => json_encode($cities)
+        ]);
     }
 
-    public function createOrder(Request $request, \Cart $cart)
+    public function createOrder(NewOrderRequest $request)
     {
 
-        $request->validate([
-            'costumer_full_name' => 'required|max:50',
-            'costumer_phone_number' => 'required',
-            'costumer_email' => 'email',
-            'delivery_address' => 'required'
-        ]);
-        $args = array_push($request->all(), ['amount' => $cart->totalPrice]);
+        $cart = \Cart::get();
+        $args = array_merge($request->all(), ['amount' => $cart->totalPrice]);
+        try{
+        $order = Order::create($args);
 
-        try {
-            $order = Order::create($args);
-            $orderItems = data_fill($cart->getProductIdAndCount(), '*.order_id', $order->id);
-            OrderItems::create([$orderItems]);
-        } catch (\Exception $exception) {
-            return $exception;
+            $products = $cart->getProductIdAndCount();
+            $orderItems = data_fill($products, '*.order_id', $order->id);
+            foreach ($orderItems as $item) {
+                OrderItems::create($item);
+            }
+            \Cart::clear();
+        }catch (\Exception $e){
+
         }
-        return redirect()->route('home');
+        return true;
     }
+
 }
